@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SH-9</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #f8f9fa;
+    }
+    .c {
+      background: #fff;
+      padding: 32px 40px;
+      max-width: 600px;
+      margin: auto;
+    }
+    .cl {
+      font-size: 12px;
+      color: #999;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+    .ck {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 20px;
+      padding: 10px;
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    .l {
+      margin: 20px 0;
+    }
+    .l ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .l li {
+      margin: 8px 0;
+    }
+    .l a {
+      color: #06c;
+      text-decoration: none;
+    }
+    .l a:hover {
+      text-decoration: underline;
+    }
+    .u {
+      margin: 30px 0;
+      padding: 15px;
+      background: #f5f5f5;
+      border: 1px solid #ccc;
+    }
+    .ut {
+      font-size: 12px;
+      color: #666;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+    .uc {
+      line-height: 1.5;
+      color: #555;
+    }
+    @media(max-width:768px) {
+      .c {
+        padding: 20px 25px;
+        margin: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="c">
+    <center>
+      <div class="cl">Time in California</div>
+      <div class="ck" id="t">Loading...</div>
+      
+      <h2>sleeperhook9.net</h2>
+      <div class="l">
+        <ul>
+          <li><a href="#" onclick="d()">Discord</a></li>
+          <li><a href="https://github.com/kk3i" target="_blank">GitHub</a></li>
+        </ul>
+      </div>
+      
+      <div class="u">
+        <div class="ut">Last updated: Monday, June 14, 2025 at 10:41 AM PST</div>
+        <div class="uc">
+		
+		- Registered the sleeperhook9.net DNS <br>
+		- Fixed mobile scaling issue<br><br>
+		
+		<i>This website is a placeholder</i><br>
+		
+        </div>
+      </div>
+      <div> 
+        <i>kk3i@proton.me</i><br><br>
+      </div>
+    </center>
+  </div>
+
+  <script>
+    const e = document.getElementById('t');
+    
+    function u() {
+      e.textContent = new Date().toLocaleString("en-US", {
+        timeZone: "America/Los_Angeles",
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }) + ' PST';
+    }
+
+    function d() {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText('kk3i').then(() => {
+          alert('Discord username "kk3i" copied to clipboard!');
+        });
+      } else {
+        alert('Discord username: kk3i');
+      }
+    }
+
+    u();
+    setInterval(u, 1000);
+  </script>
+</body>
+</html>
