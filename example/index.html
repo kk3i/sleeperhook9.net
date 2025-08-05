@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>sleeperhook9</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .background-video {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
+      transform: translate(-50%, -50%);
+      filter: blur(12px);
+      opacity: 0.7;
+    }
+    
+    .c {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 32px 40px;
+      max-width: 600px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .cl {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.8);
+      text-align: center;
+      margin-bottom: 5px;
+    }
+    
+    .ck {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 20px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      border-radius: 6px;
+      backdrop-filter: blur(5px);
+    }
+    
+    h2 {
+      color: #fff;
+      text-align: center;
+      margin: 20px 0;
+    }
+    
+    .l {
+      margin: 20px 0;
+    }
+    
+    .l ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .l li {
+      margin: 8px 0;
+      text-align: center;
+    }
+    
+    .l a {
+      color: #66ccff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .l a:hover {
+      text-decoration: underline;
+      color: #99ddff;
+    }
+    
+    .u {
+      margin: 30px 0;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      backdrop-filter: blur(5px);
+    }
+    
+    .ut {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.7);
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+    
+    .uc {
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    
+    i {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    @media(max-width:768px) {
+      .c {
+        padding: 20px 25px;
+        margin: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Video/GIF -->
+  <video class="background-video" autoplay muted loop id="backgroundVideo" style="display: none;">
+    <source src="background.mp4" type="video/mp4">
+  </video>
+  
+  <img class="background-video" id="backgroundGif" src="background.gif" alt="Background" style="display: none;" />
+  
+  <div class="c">
+    <center>
+      <div class="cl">Time in California</div>
+      <div class="ck" id="t">Loading...</div>
+      
+      <h2>sleeperhook9.net</h2>
+      <div class="l">
+        <ul>
+          <li><a href="#" onclick="d()">Discord</a></li>
+          <li><a href="https://github.com/kk3i" target="_blank">GitHub</a></li>
+          <li><a href="https://www.youtube.com/@sleeperx64" target="_blank">YouTube</a></li>
+        </ul>
+      </div>
+      
+      <div class="u">
+        <div class="ut">Last updated: Monday, August 5, 2025 at 1:06 AM PST</div>
+        <div class="uc">
+          New Website Refresh /ᐠ-ᆽ-ᐟ \<br><br> 
+          
+          <i>rise up like the sun</i><br>
+        </div>
+      </div>
+      <div> 
+        <i>kk3i@proton.me</i><br><br>
+      </div>
+    </center>
+  </div>
+
+  <script>
+    // Check for background media files and set up background
+    function setupBackground() {
+      const video = document.getElementById('backgroundVideo');
+      const gif = document.getElementById('backgroundGif');
+      
+      // Try to load GIF first
+      gif.onload = function() {
+        gif.style.display = 'block';
+        console.log('Using background.gif');
+      };
+      
+      gif.onerror = function() {
+        console.log('background.gif not found, trying background.mp4');
+        // If GIF fails, try video
+        video.onloadeddata = function() {
+          video.style.display = 'block';
+          console.log('Using background.mp4');
+        };
+        
+        video.onerror = function() {
+          console.log('background.mp4 not found, using animated fallback');
+          // If both fail, use animated background
+          createAnimatedBackground();
+        };
+        
+        // Force video to try loading
+        video.load();
+      };
+      
+      // Force gif to try loading
+      gif.src = gif.src;
+    }
+    
+    // Create animated background as fallback
+    function createAnimatedBackground() {
+      const canvas = document.createElement('canvas');
+      canvas.style.position = 'fixed';
+      canvas.style.top = '0';
+      canvas.style.left = '0';
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      canvas.style.zIndex = '-1';
+      canvas.style.filter = 'blur(12px)';
+      canvas.style.opacity = '0.7';
+      document.body.appendChild(canvas);
+      
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      // Create gradient background with colors from your GIF
+      function animate() {
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        const time = Date.now() * 0.001;
+        
+        // Colors inspired by your forest scene
+        gradient.addColorStop(0, `hsl(${220 + Math.sin(time) * 20}, 70%, ${30 + Math.sin(time * 0.5) * 10}%)`);
+        gradient.addColorStop(0.5, `hsl(${280 + Math.cos(time * 0.7) * 30}, 60%, ${25 + Math.cos(time * 0.3) * 15}%)`);
+        gradient.addColorStop(1, `hsl(${320 + Math.sin(time * 0.9) * 25}, 50%, ${20 + Math.sin(time * 0.8) * 10}%)`);
+        
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        requestAnimationFrame(animate);
+      }
+      
+      animate();
+      
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    }
+    
+    // Initialize background
+    setupBackground();
+    
+    const e = document.getElementById('t');
+    
+    function u() {
+      e.textContent = new Date().toLocaleString("en-US", {
+        timeZone: "America/Los_Angeles",
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }) + ' PST';
+    }
+
+    function d() {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText('kk3i').then(() => {
+          alert('Discord username "kk3i" copied to clipboard!');
+        });
+      } else {
+        alert('Discord username: kk3i');
+      }
+    }
+
+    u();
+    setInterval(u, 1000);
+  </script>
+</body>
+</html>
